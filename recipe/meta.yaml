@@ -32,18 +32,18 @@ outputs:
       run_constrained:
         - gmock {{ version }}
     files:
-      -  lib/libgtest*                                          # [linix]
-      -  include/gtest                                          # [linix]
-      -  lib/pkgconfig/gtest*.pc                                # [linix]
-      -  lib/cmake/GTest                                        # [linix]
+      -  lib/libgtest*                                          # [linux]
+      -  include/gtest                                          # [linux]
+      -  lib/pkgconfig/gtest*.pc                                # [linux]
+      -  lib/cmake/GTest                                        # [linux]
     test:
       commands:
-        - test ! -f ${PREFIX}/lib/libgtest.a                    # [linix]
-        - test ! -f ${PREFIX}/lib/libgtest_main.a               # [linix]
-        - test -f ${PREFIX}/lib/libgtest${SHLIB_EXT}            # [linix]
-        - test -f ${PREFIX}/lib/pkgconfig/gtest.pc              # [linix]
-        - test -f ${PREFIX}/lib/pkgconfig/gtest_main.pc         # [linix]
-        - test -d ${PREFIX}/include/gtest                       # [linix]
+        - test ! -f ${PREFIX}/lib/libgtest.a                    # [linux]
+        - test ! -f ${PREFIX}/lib/libgtest_main.a               # [linux]
+        - test -f ${PREFIX}/lib/libgtest${SHLIB_EXT}            # [linux]
+        - test -f ${PREFIX}/lib/pkgconfig/gtest.pc              # [linux]
+        - test -f ${PREFIX}/lib/pkgconfig/gtest_main.pc         # [linux]
+        - test -d ${PREFIX}/include/gtest                       # [linux]
 
   - name: gmock
     version: {{ version }}
@@ -58,18 +58,18 @@ outputs:
       run:
         - {{ pin_subpackage('gtest', exact=True) }}
     files:
-      -  include/gmock                                          # [linix]
-      -  lib/libgmock*                                          # [linix]
-      -  lib/pkgconfig/gmock*.pc                                # [linix]
-      -  lib/cmake/GTest                                        # [linix]
+      -  include/gmock                                          # [linux]
+      -  lib/libgmock*                                          # [linux]
+      -  lib/pkgconfig/gmock*.pc                                # [linux]
+      -  lib/cmake/GTest                                        # [linux]
     test:
       commands:
-        - test ! -f ${PREFIX}/lib/libgmock.a                    # [linix]
-        - test ! -f ${PREFIX}/lib/libgmock_main.a               # [linix]
-        - test -f ${PREFIX}/lib/libgmock${SHLIB_EXT}            # [linix]
-        - test -f ${PREFIX}/lib/pkgconfig/gmock.pc              # [linix]
-        - test -f ${PREFIX}/lib/pkgconfig/gmock_main.pc         # [linix]
-        - test -d ${PREFIX}/include/gmock                       # [linix]
+        - test ! -f ${PREFIX}/lib/libgmock.a                    # [linux]
+        - test ! -f ${PREFIX}/lib/libgmock_main.a               # [linux]
+        - test -f ${PREFIX}/lib/libgmock${SHLIB_EXT}            # [linux]
+        - test -f ${PREFIX}/lib/pkgconfig/gmock.pc              # [linux]
+        - test -f ${PREFIX}/lib/pkgconfig/gmock_main.pc         # [linux]
+        - test -d ${PREFIX}/include/gmock                       # [linux]
 
 about:
   home: https://github.com/google/googletest
