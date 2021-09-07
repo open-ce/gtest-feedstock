@@ -18,30 +18,16 @@ requirements:
     - python {{ python }}
     - cmake {{ cmake }}
     - ninja {{ ninja }}
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
-  host: 
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
 
 outputs:
   - name: gtest
     version: {{ version }}
     requirements:
-      host:
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}
       build:
         - {{ compiler('cxx') }}
         - python {{ python }}
         - cmake {{ cmake }}
         - ninja {{ ninja }}
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}  
       run_constrained:
         - gmock {{ version }}
     files:
@@ -66,13 +52,7 @@ outputs:
         - python {{ python }}
         - cmake {{ cmake }}
         - ninja {{ ninja }}
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}
       host:
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}
         - {{ pin_subpackage('gtest', exact=True) }}
       run:
         - {{ pin_subpackage('gtest', exact=True) }}
