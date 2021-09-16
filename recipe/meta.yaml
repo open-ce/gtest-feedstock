@@ -10,7 +10,7 @@ source:
   sha256: 9dc9157a9a1551ec7a7e43daea9a694a0bb5fb8bec81235d8a1e6ef64c716dcb
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -19,12 +19,12 @@ requirements:
     - cmake {{ cmake }}
     - ninja {{ ninja }}
     # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
-  host: 
+    - libgcc-ng  {{ libgcc }}                                   # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}                             # [x86_64 and c_compiler_version == "7.2.*"]
+  host:
     # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
+    - libgcc-ng  {{ libgcc }}                                   # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}                             # [x86_64 and c_compiler_version == "7.2.*"]
 
 outputs:
   - name: gtest
@@ -32,16 +32,16 @@ outputs:
     requirements:
       host:
         # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}
+        - libgcc-ng  {{ libgcc }}                               # [x86_64 and c_compiler_version == "7.2.*"]
+        - libstdcxx-ng  {{ libstdcxx }}                         # [x86_64 and c_compiler_version == "7.2.*"]
       build:
         - {{ compiler('cxx') }}
         - python {{ python }}
         - cmake {{ cmake }}
         - ninja {{ ninja }}
         # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}  
+        - libgcc-ng  {{ libgcc }}                               # [x86_64 and c_compiler_version == "7.2.*"]
+        - libstdcxx-ng  {{ libstdcxx }}                         # [x86_64 and c_compiler_version == "7.2.*"]
       run_constrained:
         - gmock {{ version }}
     files:
@@ -67,12 +67,12 @@ outputs:
         - cmake {{ cmake }}
         - ninja {{ ninja }}
         # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}
+        - libgcc-ng  {{ libgcc }}                               # [x86_64 and c_compiler_version == "7.2.*"]
+        - libstdcxx-ng  {{ libstdcxx }}                         # [x86_64 and c_compiler_version == "7.2.*"]
       host:
         # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}
+        - libgcc-ng  {{ libgcc }}                               # [x86_64 and c_compiler_version == "7.2.*"]
+        - libstdcxx-ng  {{ libstdcxx }}                         # [x86_64 and c_compiler_version == "7.2.*"]
         - {{ pin_subpackage('gtest', exact=True) }}
       run:
         - {{ pin_subpackage('gtest', exact=True) }}
