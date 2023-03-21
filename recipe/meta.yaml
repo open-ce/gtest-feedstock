@@ -1,4 +1,4 @@
-{% set version = "1.10.0" %}
+{% set version = "1.13.0" %}
 
 
 package:
@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/google/googletest/archive/release-{{ version }}.tar.gz
-  sha256: 9dc9157a9a1551ec7a7e43daea9a694a0bb5fb8bec81235d8a1e6ef64c716dcb
+  url: https://github.com/google/googletest/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: ad7fdba11ea011c1d925b3289cf4af2c66a352e18d4c7264392fead75e919363
 
 build:
-  number: 3 
+  number: 1
 
 requirements:
   build:
@@ -18,30 +18,16 @@ requirements:
     - python {{ python }}
     - cmake {{ cmake }}
     - ninja {{ ninja }}
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}                                   # [x86_64 and c_compiler_version == "7.2.*"]
-    - libstdcxx-ng  {{ libstdcxx }}                             # [x86_64 and c_compiler_version == "7.2.*"]
-  host:
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}                                   # [x86_64 and c_compiler_version == "7.2.*"]
-    - libstdcxx-ng  {{ libstdcxx }}                             # [x86_64 and c_compiler_version == "7.2.*"]
 
 outputs:
   - name: gtest
     version: {{ version }}
     requirements:
-      host:
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}                               # [x86_64 and c_compiler_version == "7.2.*"]
-        - libstdcxx-ng  {{ libstdcxx }}                         # [x86_64 and c_compiler_version == "7.2.*"]
       build:
         - {{ compiler('cxx') }}     # [ ppc_arch != "p10"]
         - python {{ python }}
         - cmake {{ cmake }}
         - ninja {{ ninja }}
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}                               # [x86_64 and c_compiler_version == "7.2.*"]
-        - libstdcxx-ng  {{ libstdcxx }}                         # [x86_64 and c_compiler_version == "7.2.*"]
       run_constrained:
         - gmock {{ version }}
     files:
@@ -66,13 +52,7 @@ outputs:
         - python {{ python }}
         - cmake {{ cmake }}
         - ninja {{ ninja }}
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}                               # [x86_64 and c_compiler_version == "7.2.*"]
-        - libstdcxx-ng  {{ libstdcxx }}                         # [x86_64 and c_compiler_version == "7.2.*"]
       host:
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}                               # [x86_64 and c_compiler_version == "7.2.*"]
-        - libstdcxx-ng  {{ libstdcxx }}                         # [x86_64 and c_compiler_version == "7.2.*"]
         - {{ pin_subpackage('gtest', exact=True) }}
       run:
         - {{ pin_subpackage('gtest', exact=True) }}
@@ -94,7 +74,7 @@ about:
   home: https://github.com/google/googletest
   license: BSD-3-Clause
   license_family: BSD
-  license_file: googletest/LICENSE
+  license_file: LICENSE
   summary: Google's C++ test framework
 
 extra:
